@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl text-amber-600 mt-8 mb-6;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 mt-6 mb-4;
+            }
+            p {
+                @apply my-4;
+            }
+            ul, ol {
+                @apply text-left marker:text-amber-600 ml-8;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol ul, ul ul, ol ol, ul ol {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-2;
+            }
+            a {
+                @apply underline decoration-dotted text-amber-600;
+            }
+            body {
+                @apply p-2
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Слайды для курса SRE</h1>
+    <ul>
+        <li><a href="SRE/00 О сбоях.html">00 О сбоях</a></li>
+        <li><a href="SRE/02 Основы мониторинга.html">02 Основы мониторинга</a></li>
+    </ul>
+</body>
+</html>
