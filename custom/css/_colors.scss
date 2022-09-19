@@ -1,0 +1,59 @@
+$color-p: #ff5722;
+$color-t-on-p: black;
+$color-pd: #c41c00;
+$color-t-on-pd: white;
+$color-pl: #ff8a50;
+$color-t-on-pl: black;
+
+$color-s: #546e7a;
+$color-t-on-s: white;
+$color-sd: #29434e;
+$color-t-on-sd: white;
+$color-sl: #819ca9;
+$color-t-on-sl: black;
+
+@mixin colors($name, $value) {
+    .color-#{$name} {
+        color: $value;
+    }
+
+    .bg-color-#{$name} {
+        background-color: $value;
+    }
+}
+
+@include colors("p", $color-p);
+
+.color-t-on-p {
+    color: $color-t-on-p;
+}
+
+@include colors("pd", $color-pd);
+
+.color-t-on-pd {
+    color: $color-t-on-pd;
+}
+
+@include colors("pl", $color-pl);
+
+.color-t-on-pl {
+    color: $color-t-on-pl;
+}
+
+@include colors("s", $color-s);
+
+.color-t-on-s {
+    color: $color-t-on-s;
+}
+
+@include colors("sd", $color-sd);
+
+.color-t-on-sd {
+    color: $color-t-on-sd;
+}
+
+@include colors("sl", $color-sl);
+
+.color-t-on-sl {
+    color: $color-t-on-sl;
+}
