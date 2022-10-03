@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl bg-amber-600 w-fit mx-auto mt-8 mb-6 p-2 text-white;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 my-2 mt-6 mb-4;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+                max-width: 930px;
+            }
+            .p2 {
+                @apply flex;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left text-xl text-slate-500;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600 w-fit;
+                max-width: 800px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol ul, ul ul, ol ol, ul ol {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-4;
+            }
+        }
+        @layer components {
+            .intro {
+                width: 960px;
+                height: 700px;
+            }
+            .info {
+                @apply block bg-blue-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>SLA, SLO, SLI</h1>
+                <p>
+                    <i class="fa-regular fa-copyright"></i>
+                    Дмитрий Масленников, «Тинькофф»
+                </p>
+            </section>
+            <section>
+                <h1>Проблема оценки работы SRE</h1>
+                <p>
+                    Как понять, сколько сбоев не случилось из-за того, что поработали SRE?
+                </p>
+            </section>
+            <section>
+                <h1>Проблема метрики оценки надежности</h1>
+            </section>
+            <section>
+                <p>SLI — <b>S</b>ervice <b>L</b>evel <b>I</b>ndicators</p>
+                <p>Индикаторы уровня сервиса — важные метрики показывающие пользовательский опыт непосредственно</p>
+            </section>
+            <section>
+                <p>SLO — <b>S</b>ervice <b>L</b>evel <b>O</b>bjectives</p>
+                <p>Целевые показатели сервиса — значения SLI, которые мы желаем видеть у своего приложения</p>
+            </section>
+            <section>
+                <p>SLA — <b>S</b>ervice <b>L</b>evel <b>A</b>greement</p>
+                <p>Соглашение о уровне сервиса</p>
+            </section>
+            <section>
+                <section>
+                    <h1>Как считают надежность</h1>
+                </section>
+                <section>
+                    <img src="imgs/SLA_dashboard.png"/>
+                </section>
+            </section>
+            <section>
+                <h1>Бюджет ошибок</h1>
+            </section>
+            <section>
+                <h1>Проблемы при подсчетах надежности</h1>
+                <ul>
+                    <li>Не понятно, что считать уже сломанным (выбор SLI/SLO)</li>
+                    <li>Установка желаемых целей сильно выше возможностей</li>
+                    <li>Сложно выбрать интервал, на котором считать</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Как сделать учет SLA?</h1>
+                <p>
+                    Нет готовых удобных инструментов — писать самому
+                </p>
+                <code>
+                <pre>
+schedule(1m, () => {
+    bool has_bad_minute = false;
+    int currentMinute = minute(timestamp());
+    for (indicator in indicators) {
+        if (indicator.fail()) {
+            mark_minute_bad(indicator.id, currentMinute);
+            has_bad_minute = true;
+        }
+    }
+    if (!has_bad_minute) {
+        mark_minute_ok(currentMinute);
+    }
+})
+                </pre>
+                </code>
+            </section>
+            <section>
+                <section>
+                    <h1>SLI на примере — T-Uber</h1>
+                </section>
+                <section>
+                    Сервис такси
+                    <ul>
+                        <li>Похож на «обычный» сервис такси</li>
+                        <li>Два мобильных приложения: для пользователей и водителей</li>
+                        <li>Умеет оценивать время поездки с учетом пробок и без (когда внешний сервис отвалился)</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li><b>in_request_count</b> — количество запросов от клиентов в разбивке по типам</li>
+                        <li><b>in_request_duration</b> — время выполнения запросов</li>
+                        <li><b>in_request_errors</b> — количество запросов завершившися с ошибкой</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li><b>matching_requests</b> — сколько пришло запросов на поиск автомобиля</li>
+                        <li><b>matching_requests_done_success</b> — сколько таких запросов успешно обработали</li>
+                        <li><b>matching_requests_done_fail</b> — сколько таких запросов не обработали</li>
+                        <li><b>awaiting_requests</b> — сколько человек начинали ждать автомобиль</li>
+                        <li><b>awaiting_requests_done_success</b> — сколько человек начинали ждать автомобиль</li>
+                        <li><b>awaiting_requests_done_fail</b> — сколько человек начинали ждать автомобиль</li>
+                        <li>и т.д. про все стадии</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li><b>match_duration</b> — сколько времени ищем водителя</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li><b>estimated_awaiting_time</b> — распределение оценочного времени подачи автомобиля</li>
+                        <li><b>estimated_trip_time</b> — распределение оценочного времени поездки</li>
+                        <li><b>awaiting_time</b> — сколько фактически ждали подачи автомобиля</li>
+                        <li><b>trip_time</b> — сколько фактически длилась поездка</li>
+                        <li><b>estimation_discrepancy_await</b> — разница между предсказанным и фактическим времением ожидания</li>
+                        <li><b>estimation_discrepancy_trip</b> — разница между предсказанным и фактическим времением поездки</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li><b>traffic_jams_fallback_count</b> — запросов не учитывают пробки</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h1>Спасибо!</h1>
+                <h2>Вопросы?</h2>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
