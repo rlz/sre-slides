@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-7xl text-blue-800 font-bold mt-20 mb-10;
+            }
+
+            section > div:only-child {
+                @apply text-left text-3xl flex flex-col;
+                height: 700px;
+            }
+
+            p {
+                @apply my-10;
+            }
+
+            .muted-1 {
+                @apply text-slate-400;
+            }
+
+            .muted-2 {
+                @apply text-stone-400;
+            }
+
+            .accent-1 {
+                @apply text-blue-800 font-bold;
+            }
+
+            .accent-2 {
+                @apply text-violet-800 font-bold;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <img width="960" src="imgs/submorine.intro.jpg" />
+            </section>
+            <section>
+                <div>
+                    <h1>О надежности</h1>
+                    <p class="muted-1">
+                        Почему <span class="accent-1">надежность</span> информационных систем
+                        приобрела особую роль в современном мире в последние десять лет?
+                    </p>
+                    <p class="muted-2">
+                        Какие профессии <span class="accent-2">должны</span> думать о
+                        надежности информационных продуктов?
+                    </p>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h1>Про Google</h1>
+                    <p class="muted-1">
+                        Почему именно Google стал главным <span class="accent-1">авторитетом</span>
+                        в построении надежных информационных систем?
+                    </p>
+                    <p class="muted-2">
+                        Все большие ИТ компании умеют в SRE?
+                        Как быть более <span class="accent-2">мелким</span> компаниям?
+                        А зачем?
+                    </p>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h1>Про SRE</h1>
+                    <p class="muted-1">
+                        Что такое SRE? Почему спустя 6 лет после появления термина все еще продолжают
+                        идти <span class="accent-1">споры</span> и нет единого понимания термина и подхода?
+                    </p>
+                    <p class="muted-2">
+                        Положение SRE среди других похожих практик и подходов. Что случилось с
+                        <span class="accent-2">DevOps</span>? DevOps больше не нужен?
+                    </p>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h1>Полезные практики</h1>
+                    <p class="text-2xl">
+                        <span class="accent-1">Комплексная работа над «культурой надежности».</span>
+                        <span class="muted-1">Доверить заниматься надежностью людям с опытом разработки.</span>
+                        <span class="accent-2">Дежурства 24х7 силами инженеров и связанные с этим процессы.</span>
+                        <span class="muted-2">Грамотная работа с алертированием.</span>
+                        <span class="accent-1">Обучение: экзамены, отработка кейсов.</span>
+                        <span class="muted-1">Безопасные релизы: переключатели функционала, канарейки.</span>
+                        <span class="accent-2">Автоматизированный мониторинг надежности.</span>
+                        <span class="muted-2">Грамотное написание постмортемов.</span>
+                        <span class="accent-1">Процессы организации работ по устранению сбоев.</span>
+                        <span class="muted-1">Необвинительная культура.</span>
+                        <span class="accent-2">Автоматизация рутиных операций.</span>
+                        <span class="muted-2">Постоянная борьба с устаревающим кодом.</span>
+                        <span class="accent-1">Обеспечение постепенной деградации.</span>
+                    </p>
+                    <p class="text-neutral-600 text-2xl">
+                        и многое другое...
+                    </p>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h1>Вопросы?</h1>
+                    <img width="350" src="../SRE/imgs/wonder-world.jpeg"/>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
