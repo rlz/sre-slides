@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl bg-amber-600 w-fit mx-auto mt-8 mb-6 p-2 text-white;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 my-2 mt-6 mb-4;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+                max-width: 930px;
+            }
+            .p2 {
+                @apply flex mb-5;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left text-xl text-slate-500;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600 w-fit;
+                max-width: 800px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol, ul {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-4;
+            }
+        }
+        @layer components {
+            .intro {
+                width: 960px;
+                height: 700px;
+            }
+            .info {
+                @apply block bg-blue-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+            .danger {
+                @apply block bg-red-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides dev">
+            <section>
+                <h1>Устранение сбоев</h1>
+                <p>
+                    <i class="fa-regular fa-copyright"></i>
+                    Дмитрий Масленников, «Тинькофф»
+                </p>
+            </section>
+            <section>
+                <section>
+                    <h1>Перед сбоем</h1>
+                </section>
+                <section>
+                    <h1>Настольная книга дежурного</h1>
+                    <ul>
+                        <li>Важные для продакшена новости проекта</li>
+                        <li>Важные для продакшена ссылки</li>
+                        <li>Важные контакты</li>
+                        <li>Полезные команды и их шаблоны</li>
+                        <li>Самые важные выдержки из документации</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Утилиты самодиагностики</h1>
+                    <ul>
+                        <li>Состояние подключений</li>
+                        <li>Состояние переключателей</li>
+                        <li>Состояние фиче-флагов</li>
+                        <li>Актуальный конфиг</li>
+                        <li>Состояние данных</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>RED метрики для вызовов</h1>
+                    <p>
+                        RED — <b>R</b>equest, <b>E</b>rrors, <b>D</b>uration
+                    </p>
+                    <p class="italic">
+                        Запросы, Ошибки, Длительность
+                    </p>
+                    <p class="info">
+                        Нас интересуют внешние и внутренние RED метрики
+                    </p>
+                </section>
+                <section>
+                    <h1>USE метрики для ресурсов</h1>
+                    <p class="info">
+                        <b>Ресурс</b> — физические ресурсы сервера (CPU, память, место на диске, файловые дескрипторы и т.п.)
+                        и внутренние ресурсы приложения (открытые соединения в пуле, воркеры и т.п.), которые могут
+                        исчерпаться
+                    </p>
+                    <p>
+                        USE — <b>U</b>tilization, <b>S</b>aturation, <b>E</b>rrors
+                    </p>
+                    <p class="italic">
+                        Утилизация, Насыщение, Ошибки
+                    </p>
+                    <ul>
+                        <li><b>Утилизация</b> — метрика использования ресурса, часто время использования ресурса</li>
+                        <li><b>Насыщение</b> — метрика, показывающая насколько ресурса не хватает, например, размер очереди ожидания</li>
+                        <li><b>Ошибки</b> — ошибки связанные с использованием ресурса</li>                        
+                    </ul>
+                </section>
+                <section>
+                    <h1>Самопочинка</h1>
+                    <p class="info">
+                        Машина реагирует быстрее человека и никогда не спит
+                    </p>
+                    <ul>
+                        <li>Авторестарт сбойных экземпляров</li>
+                        <li>Авторестарт «особенных» экземпляров</li>
+                        <li>Выключение сбойных нод (кластеров, датацентров) из балансировки</li>
+                        <li>Тюнинг параметров систем под нагрузку</li>
+                    </ul>
+                    <p class="danger">
+                        Может усугубить сбой или даже вызвать его
+                    </p>
+                </section>
+                <section>
+                    <h1>DRP</h1>
+                    <p>
+                        <b>D</b>isaster <b>R</b>ecovery <b>P</b>lan
+                    </p>
+                    <p>План восстановления после катастрофы</p>
+                    <p>Практически план восстановления после потери всей инфраструктуры из бекапов</p>
+                </section>
+                <section>
+                    <h1>Отработка действий</h1>
+                    <ul>
+                        <li><b>Wheel-of-misfortune</b> — ролевая игра по восстановлению конкретной системы</li>
+                        <li>
+                            <b>Обучение на реальных сбоях</b> — кандидат в SRE должен устранить реальный сбой,
+                            прежде чем начать дежурить самостоятельно
+                        </li>
+                        <li><b>Учения на искусственных сбоях</b> — контролируемые сбои в продакшен</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>DiRT</h1>
+                    <p><b>Di</b>saster <b>R</b>ecovery <b>T</b>esting</p>
+                    <p>Тестирование плана восстановления после катастроф</p>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Коммуникация и эскалация во время сбоя</h1>
+                </section>
+                <section>
+                    <h1>War room</h1>
+                    <p>
+                        Место где все соберутся должно быть определено заранее и хорошо известно всем
+                    </p>
+                    <p class="info">
+                        Google использует IRC чаты для коммуникации во время сбоев
+                    </p>
+                </section>
+                <section>
+                    <h1>Система управления инцидентами</h1>
+                    <ul>
+                        <li>Регистрация сбоя</li>
+                        <li>Получение информации о актуальных сбоях заинтересованными</li>
+                        <li>Уведомление отвественных за устранение сбоев</li>
+                        <li>Информирование о ходе работ</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Полезные роли</h1>
+                    <ul>
+                        <li><b>Командор</b> — главный по сбою с правом принятия сложных решений</li>
+                        <li><b>Коммуникатор</b> — помогает информировать о ходе работ</li>
+                        <li>Ответственный за сбор влияния и пострадавших</li>
+                        <li>Ответственный по работе с клиентами</li>
+                        <li>Ответственный за PR и СМИ</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Общение</h1>
+                    <ul>
+                        <li>Информация об отсутствии изменений — тоже важная информация</li>
+                        <li>«Все ли в порядке с ...?» — плохо, надо начать с описания наблюдаемых проблем</li>
+                        <li>«Проблема на ... системе» — плохо, так как «проблема» — слишком общее слово</li>
+                        <li>Подробное описание действий в чат помогает информированию и восстановлению хода работ при разборе сбоя в дальнейшем</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Вызов дежурного</h1>
+                    <ul>
+                        <li>Кто вы</li>
+                        <li>Причина обращения</li>
+                        <li>Какое действие ожидаете</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h1>Спасибо!</h1>
+                <h2>Вопросы?</h2>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
