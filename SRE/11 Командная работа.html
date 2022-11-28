@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl bg-amber-600 w-fit mx-auto mt-8 mb-6 p-2 text-white;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 my-2 mt-6 mb-4;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+                max-width: 930px;
+            }
+            .p2 {
+                @apply flex mb-5;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left text-xl text-slate-500;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600 w-fit;
+                max-width: 800px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol, ul {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-4;
+            }
+        }
+        @layer components {
+            .intro {
+                width: 960px;
+                height: 700px;
+            }
+            .info {
+                @apply block bg-blue-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+            .danger {
+                @apply block bg-red-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Про отказоустойчивые архитектуры</h1>
+                <p>
+                    <i class="fa-regular fa-copyright"></i>
+                    Дмитрий Масленников, «Тинькофф»
+                </p>
+            </section>
+            <!--
+* Работа только в командах
+    * Роли менеджера и тех. лида
+* Дежурства и расписания
+* Взаимодействие команд
+    * Ручные пейджи
+    * Воррумы
+* Процесс работы
+    * Определение SLA
+    * Мониторинг SLA
+    * Задачи ставятся от сбоев и ложных алертов
+* Продакшен встреча
+* Дейлики для SRE
+* Правильная организация алертов
+    * Только важные
+    * Задачи/пейджи
+* Антипаттерны
+    * Специализация
+    * Работу делает самый опытный
+* Чаты SRE команды
+    * Team Support
+    * Users
+    * Team Highlights
+-->
+            <section>
+                <h1>SRE — командная работа</h1>
+            </section>
+            <section>
+                <h1>Быть «на телефоне» ("oncall")</h1>
+            </section>
+            <section>
+                <h1>Процесс алертирования</h1>
+                <ul>
+                    <li>Алерты настраивает себе сама SRE-команда</li>
+                    <li>Алерты получает SRE-команда</li>
+                    <li>Алерты подтверждаются</li>
+                    <li>Есть механизм эскалирования</li>
+                    <li>Есть механизм «ручных» алертов</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Первые шаги SRE-команды</h1>
+                <ul>
+                    <li>Определить SLI и SLO</li>
+                    <li>Обеспечить автоматический мониторинг SLA</li>
+                    <li>Падение SLA — источник задач для SRE</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Продакшен встреча</h1>
+            </section>
+            <section>
+                <h1>Дневник продакшена</h1>
+            </section>
+            <section>
+                <h1>Антипаттерны</h1>
+                <ul>
+                    <li>Самую сложную работу делает самый опытный</li>
+                    <li>Специализация</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Спасибо!</h1>
+                <h2>Вопросы?</h2>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
