@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl bg-amber-600 w-fit mx-auto mt-8 mb-6 p-2 text-white;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 my-2 mt-6 mb-4;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+                max-width: 930px;
+            }
+            .p2 {
+                @apply flex mb-5;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left text-xl text-slate-500;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600 w-fit;
+                max-width: 800px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol, ul {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-4;
+            }
+        }
+        @layer components {
+            .intro {
+                width: 960px;
+                height: 700px;
+            }
+            .info {
+                @apply block bg-blue-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+            .danger {
+                @apply block bg-red-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Про отказоустойчивые архитектуры</h1>
+                <p>
+                    <i class="fa-regular fa-copyright"></i>
+                    Дмитрий Масленников, «Тинькофф»
+                </p>
+            </section>
+            <!--
+* Предпродовое и продакшен тестирование
+    * Тестирование прода перед запуском пользователей
+    * Тестирование во время работы приложения
+* Использование сохраненных запросов для эмуляции пользовательских действий
+* Использование мирроринга для тестирования
+* Тестирование редко используемого функционала встраиванием в рабочие процессы
+* Тестирование одними приложениями других (тестирование зависимостей)
+* Тестирование конфигов
+* Тестирование приложения на работу во время сбоя
+    * под огромной нагрузкой
+    * с сломанными зависимостями
+* Хаос-инжиниринг
+* Использование продакшена в качестве тестовой среды
+
+-->
+            <section>
+                <h1>Тестирование прода перед запуском пользователей</h1>
+            </section>
+            <section>
+                <h1>Тестирование во время работы приложения</h1>
+            </section>
+            <section>
+                <h1>Использование сохраненных запросов для эмуляции пользовательских действий</h1>
+            </section>
+            <section>
+                <h1>Использование мирроринга для тестирования</h1>
+            </section>
+            <section>
+                <h1>Тестирование редко используемого функционала встраиванием в рабочие процессы</h1>
+            </section>
+            <section>
+                <h1>Тестирование одними приложениями других (тестирование зависимостей)</h1>
+            </section>
+            <section>
+                <h1>Тестирование приложения на работу во время сбоя</h1>
+                <ul>
+                    <li>под огромной нагрузкой</li>
+                    <li>с сломанными зависимостями</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Хаотическое тестирование</h1>
+            </section>
+            <section>
+                <h1>Использование продакшена к качестве тестовой среды</h1>
+            </section>
+            <section>
+                <h1>Спасибо!</h1>
+                <h2>Вопросы?</h2>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
