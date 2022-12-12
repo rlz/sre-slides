@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl bg-amber-600 w-fit mx-auto mt-8 mb-6 p-2 text-white;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 my-2 mt-6 mb-4;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+                max-width: 930px;
+            }
+            .p2 {
+                @apply flex mb-5;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left text-xl text-slate-500;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600 w-fit;
+                max-width: 800px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol, ul {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-4;
+            }
+        }
+        @layer components {
+            .intro {
+                width: 960px;
+                height: 700px;
+            }
+            .info {
+                @apply block bg-blue-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+            .danger {
+                @apply block bg-red-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>SRE для клиентов</h1>
+                <p>
+                    <i class="fa-regular fa-copyright"></i>
+                    Дмитрий Масленников, «Тинькофф»
+                </p>
+            </section>
+            <!--
+* Терминология
+    * Клиент
+    * Frontend
+    * Backend
+* "Особенности клиента"
+    * Web
+        * Плохая связь
+        * Ограничения браузера
+    * Mobile
+        * Плохая связь
+        * Необходимость экономить батарейку
+        * Ограничения ОС
+        * Сложности с обновлением
+* Идемпотентность важнее
+* Очень долго держать совместимость по API
+* Возможность общаться с пользователем во время сбоев
+* Включение функционала удаленно
+* Возможность очищать кеши
+* Тестирование на сотрудниках
+* Перенос логики на бекенд (BFF)
+* Тестирование работы при получении ошибок от бекенда
+* Умение блокировать часть траффика
+
+-->
+            <section>
+                <h1>Терминология</h1>
+                <ul>
+                    <li>Client — приложение (Web, Mobile, Desktop), которое мы используем для доступа</li>
+                    <li>Frontend — бекенд, который получает запросы от Client</li>
+                    <li>Backend — общее название всех микросервисов</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Ограничения клиентов</h1>
+                <ul>
+                    <li>
+                        Web
+                        <ul>
+                            <li>Нестабильная связь</li>
+                            <li>Ограничения браузера</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Native Mobile
+                        <ul>
+                            <li>Нестабильная связь</li>
+                            <li>Необходимость экономить батарейку</li>
+                            <li>Ограничения ОС</li>
+                            <li>Сложности с обновлениями</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h1>Идемпотентность</h1>
+                <div class="info">Идемпотентность для клиентского API важнее, чем для внутри датацентрового</div>
+            </section>
+            <section>
+                <h1>Совместимость по API надо держать годами</h1>
+            </section>
+            <section>
+                <h1>Возможность общения с пользователем во время сбоев</h1>
+            </section>
+            <section>
+                <h1>Feature-toggles удаленно</h1>
+            </section>
+            <section>
+                <h1>Возможность удаленной очистки/переписывания кешей</h1>
+            </section>
+            <section>
+                <h1>Тестирование на сотрудниках</h1>
+            </section>
+            <section>
+                <h1>Перенос логики на бекенд — BFF</h1>
+            </section>
+            <section>
+                <h1>Тестирование работы при получении ошибок от бекенда</h1>
+            </section>
+            <section>
+                <h1>Умение блокировать часть траффика</h1>
+            </section>
+            <section>
+                <section>
+                    <h1>Про конфигурирование приложений</h1>
+                </section>
+                <section>
+                    <div class="info">Конфигурирование так же опасно, как и релиз!</div>
+                </section>
+                <section>
+                    <div class="info">Избегайте глобальных изменений в конфигурациях</div>
+                </section>
+                <section>
+                    <div class="info">На конфиги можно писать тесты</div>
+                </section>
+            </section>
+            <section>
+                <h1>Долгосрочное планирование и ресемплинг метрик</h1>
+            </section>
+            <section>
+                <h1>Спасибо!</h1>
+                <h2>Вопросы?</h2>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
