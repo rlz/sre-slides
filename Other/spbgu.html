@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="../resources/reveal.js/reset.css" /> -->
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <!-- <link rel="stylesheet" href="../resources/reveal.js/theme/white.css" /> -->
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="../custom/css/theme.css" /> -->
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl bg-amber-600 w-fit mx-auto mt-8 mb-6 p-2 text-white;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 my-2 mt-6 mb-4;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+                max-width: 930px;
+            }
+            .p2 {
+                @apply flex mb-5;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left text-xl text-slate-500;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600 w-fit;
+                max-width: 800px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol, ul {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-4;
+            }
+        }
+        @layer components {
+            .intro {
+                width: 960px;
+                height: 700px;
+            }
+            .info {
+                @apply block bg-blue-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+            .danger {
+                @apply block bg-red-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Сбои: откуда берутся, что делать и кто виноват?</h1>
+                <div class="p2">
+                    <div>
+                        <p>Дмитрий Масленников</p>
+                        <p class="text-sm">Руководитель центра надежности ИС Тинькофф</p>
+                        <img width="300" src="imgs/t-logo.svg"/>
+                    </div>
+                    <div>
+                        <img width="400" src="imgs/ava.jpeg" />
+                    </div>
+                </div>
+            </section>
+            <section>
+                <section>
+                    <h1>Про SRE</h1>
+                    <img src="imgs/5X1B8368_02.gif" />
+                </section>
+                <section>
+                    <h1>SRE — все, что связано со сбоями и надежностью</h1>
+                    <img src="imgs/qa-cat.gif" />
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Работа с настройками</h1>
+                    <p>Масштабный сбой в мобильном банке на Android</p>
+                    <p><em>11 декабря 2020</em></p>
+                </section>
+                <section>
+                    <div class="p2">
+                        <div>
+                            <p>На Android не отображались счета и
+                                продукты на главном экране</p>
+                            <p>Пострадало около 300 тысяч пользователей</p>
+                            <p>Написали РБК, ТАСС и Коммерсант</p>
+                        </div>
+                        <div>
+                            <img style="border: dotted white 1px;" width="300"
+                                src="../SRE/imgs/postmortems/screenshot-01.jpeg" />
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Причины</h1>
+                    <ul>
+                        <li class="fragment">Добавили новый продукт, но заполнили не все поля</li>
+                        <li class="fragment">Продукты добавлялись простым редактированием JSON</li>
+                        <li class="fragment">Не было валидации на сервере</li>
+                        <li class="fragment">Не было валидации на клиенте (мобильное приложение)</li>
+                        <li class="fragment">
+                            Мобильное приложение Android не отображало все продукты,
+                            а не только один невалидный
+                        </li>
+                        <li class="fragment">Мобильные приложения кешировали список продуктов на сутки</li>
+                        <li class="fragment">Возможность принудительного сброса кеша не была предусмотрена</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Выводы</h1>
+                    <ul>
+                        <li class="fragment">Надо валидировать настройки приложения, даже если их меняет опытный
+                            администратор</li>
+                        <li class="fragment">Мобильное приложение должно валидировать данные, пришедшие с сервера
+                        </li>
+                        <li class="fragment">Мобильное приложение должно уметь работать с частично валидными данными
+                        </li>
+                        <li class="fragment">Надо уметь управлять кешированием на мобильном приложении</li>
+                        <li class="fragment">В мобильное приложение надо предусмотреть возможность коммуникации с
+                            пользователями во время сбоев</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Каскадный сбой от маленькой утилиты</h1>
+                    <p><em>17 февраля 2021</em></p>
+                </section>
+                <section>
+                    <h1>Filebeat</h1>
+                    <p>
+                        Простая утилита для загрузки логов
+                    </p>
+                    <p>
+                        Filebeat обычно используется для загрузки логов в Elastic Search
+                    </p>
+                </section>
+                <section>
+                    <h1>17 февраля в 15:08</h1>
+                    <p>Filebeat загрузил CPU одной из нод Hazelcast на 100%</p>
+                </section>
+                <section>
+                    <h1>Распространение влияния</h1>
+                    <ol>
+                        <li class="fragment">Hazelcast начал медленно отвечать, а затем у него закончились файловые
+                            дескрипторы</li>
+                        <li class="fragment">Основной API начал медленно отвечать на запросы или отвечать с ошибкой</li>
+                        <li class="fragment">Системы обращающиеся к API начали посторять запросы</li>
+                        <ul class="fragment">
+                            <li>Еще больше увеличили нагрузку на API</li>
+                            <li>Увеличили нагрузку на соседние системы (которые надо вызывать совместно с API, или
+                                которые вызывает API в процессе работы)</li>
+                        </ul>
+                    </ol>
+                </section>
+                <section>
+                    <h1>Влияние на Банк</h1>
+                    <ul>
+                        <li class="fragment">Ошибки при входе в мобильные приложения</li>
+                        <li class="fragment">Не загружались счета</li>
+                        <li class="fragment">Не работали платежи и переводы</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Влияние на Страховую</h1>
+                    <ul>
+                        <li class="fragment">Невозможно было рассчитать, оформить продлить и облатить ОСАГО</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Влияние на Инвестиции</h1>
+                    <ul>
+                        <li class="fragment">Трудно войти в приложение</li>
+                        <li class="fragment">Пользователи не видели свои счета</li>
+                        <li class="fragment">Не получалось получить информацию о ценных бумагах</li>
+                        <li class="fragment">Не возможно купить или продать бумаги, виставить лимитные заявки</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Влияние на другие сервисы</h1>
+                    <ul>
+                        <li class="fragment">Не работал голосовой помощник</li>
+                        <li class="fragment">Нельзя было записать телефонный разговор</li>
+                        <li class="fragment">На колценнтр скопилась огромная очередь</li>
+                        <li class="fragment">Внимание со стороны регулятора</li>
+                        <li class="fragment">Просели рейтинги приложений в AppStore и Google Play</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Выводы</h1>
+                    <ul>
+                        <li class="fragment">Вспомогательные приложения должны быть ограничены по максимальному
+                            использованию ресурсов</li>
+                        <li class="fragment">Надо очень внимательно продумывать работу приложений во время сбоев,
+                            особенно при повторных вызовах</li>
+                        <li class="fragment">Необходим план действий во время масштабных сбоев, включая работу
+                            поддержки
+                            и PR</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h1>Почему так происходит?</h1>
+                <div class="danger fragment">Мир несовершенен</div>
+                <div class="info fragment">
+                    Мы можем повлиять только на поведение людей, поэтому все "интересные" причины — "человечесикй
+                    фактор"
+                </div>
+            </section>
+            <section>
+                <section>
+                    <h1>Причины сбоев</h1>
+                    <div class="p2">
+                        <div>
+                            <ol>
+                                <li>Ошибка или недоработка в программном коде</li>
+                                <li>Ошибка или недоработка в архитектуре приложения</li>
+                                <li>Ошибка или недоработка в архитектуре системы</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>Код разработан внутри компании</li>
+                                <li>Код взят из открытого проекта</li>
+                                <li>Код куплен у сторонней компании</li>
+                                <li>Технический долг (проблема уже была известна и решение тоже было известно)</li>
+                                <li>Проблема была известна, но не знаем, как это решить</li>
+                                <li>О проблеме узнали впервые</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Причины сбоев</h1>
+                    <div class="p2">
+                        <div>
+                            <ol start="4">
+                                <li>Недоработка в процессах работы</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>Процесс ошибочен</li>
+                                <li>Процесс подталкивает сотрудника к ошибке или некорректному поведению</li>
+                                <li>Технический долг (проблема уже была известна и решение тоже было известно)</li>
+                                <li>Проблема была известна, но не знаем, как это решить</li>
+                                <li>О проблеме узнали впервые</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Причины сбоев</h1>
+                    <div class="p2">
+                        <div>
+                            <ol start="5">
+                                <li>Ошибка сотрудника при проведении плановых и других работ по обслуживанию систем</li>
+                                <li>Ошибка при использовании сервиса сотрудниками компании</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>Интерфейс провоцирует ошибку</li>
+                                <li>Отсутствует защита от некорректных действий</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Причины сбоев</h1>
+                    <div class="p2">
+                        <div>
+                            <ol start="7">
+                                <li>Проблема в коммуникации</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>Некорректно поставлена или понята задача</li>
+                                <li>Некорректная документация (отсутствует, устарела, с ошибками)</li>
+                                <li>Не получено важное уведомление</li>
+                                <li>Недостаточное обучение или отсутствие контроля обучения</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Причины сбоев</h1>
+                    <div class="p2">
+                        <div>
+                            <ol start="8">
+                                <li>Игнорирование риска при желании достигнуть цели любой ценой</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>Игнорирование риска при давлении от руководства</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Причины сбоев</h1>
+                    <div class="p2">
+                        <div>
+                            <ol start="9">
+                                <li>Прямая человеческая проблема — выгорание, депрессия, конфликты и т.п.</li>
+                            </ol>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Причины сбоев</h1>
+                    <div class="p2">
+                        <div>
+                            <ol start="10">
+                                <li>Не предотвратили умышленное причинение вреда</li>
+                            </ol>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>Сотрудниками</li>
+                                <li>Третьими лицами</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p2">
+                        <div>
+                            <ol start="11">
+                                <li>Недокументированное отклонение в работе внешнего сервиса</li>
+                            </ol>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section>
+                <h1>Необвинительная культура</h1>
+            </section>
+            <section>
+                <h1>Спасибо!</h1>
+                Вопросы?
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
