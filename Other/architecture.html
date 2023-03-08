@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="../resources/reveal.js/reset.css" /> -->
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <!-- <link rel="stylesheet" href="../resources/reveal.js/theme/white.css" /> -->
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="../custom/css/theme.css" /> -->
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl bg-amber-600 w-fit mx-auto mt-8 mb-6 p-2 text-white;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 my-2 mt-6 mb-4;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+                max-width: 930px;
+            }
+            .p2 {
+                @apply flex mb-5;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left text-xl text-slate-500;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600;
+                max-width: 800px;
+                width: fit-content;
+                min-width: 400px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            li {
+                @apply pl-4;
+            }
+        }
+        @layer components {
+            .intro {
+                width: 960px;
+                height: 700px;
+            }
+            .info {
+                @apply block bg-blue-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+            .danger {
+                @apply block bg-red-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Архитектура: про что мы забываем?</h1>
+                <div class="p2">
+                    <div>
+                        <p>Дмитрий Масленников</p>
+                        <p class="text-sm">Руководитель центра надежности ИС Тинькофф</p>
+                    </div>
+                    <div>
+                        <img width="400" src="imgs/ava.jpeg" />
+                    </div>
+                </div>
+            </section>
+            <section>
+                <section>
+                    <div class="info">
+                        Архитектура — совокупность важнейших решений об организации программной системы
+                    </div>
+                </section>
+                <section>
+                    <p>Архитектура должна быть понятной</p>
+                    <div class="info">Архитектуре придется обучать</div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Логи</h1>
+                </section>
+                <section>
+                    <h2>Логи используются:</h2>
+                    <ul>
+                        <li>в триггерах алертов</li>
+                        <li>для ML</li>
+                        <li>в аналитике</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="info">
+                        Логи следует не только структурировать, но относится к ним, как к API
+                    </div>
+                    <ul>
+                        <li>обратная совместимость</li>
+                        <li>версионирование</li>
+                        <li>документирование</li>
+                        <li>тестирование</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>При тестировании логов:</h2>
+                    <ul>
+                        <li>тестируем логгирование во время сбоев</li>
+                        <li>тестируем объемы порождаемых логов</li>
+                    </ul>
+                </section>
+                <section>
+                    Возможно необходимо семплирование логов!
+                    <div class="info">Семплировать лучше совместно логи одного запроса</div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Метрики</h1>
+                </section>
+                <section>
+                    <div class="info">
+                        RED: входящие и исходящие
+                    </div>
+                </section>
+                <section>
+                    <div class="info">USE — для всего, что может заканчиваться</div>
+                    <ul>
+                        <li>очереди</li>
+                        <li>воркеры</li>
+                        <li>подключения</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Статус приложения:</h2>
+                    <ul>
+                        <li>состояние выключателей</li>
+                        <li>режим работы</li>
+                        <li>статус зависимостей</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Очереди</h1>
+                </section>
+                <section>
+                    Могут быть добавлены фреймворком или рантаймом языка программирования
+                </section>
+                <section>
+                    Что будет если очередь переполнится?
+                    <div class="info">Поведение переполнения очереди надо знать и проектировать</div>
+                </section>
+                <section>
+                    <div class="info">Очереди имеют свойство накапливаться при сбоях</div>
+                    <h2>Необходимо:</h2>
+                    <ul>
+                        <li>Ограничить размер</li>
+                        <li>Уметь сбрасывать</li>
+                        <li>Ограничивать время жизни</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="info">Очереди часто не нужны</div>
+                    Иногда очередь можно заменить на стек
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Редко исползуемый функционал</h1>
+                </section>
+                <section>
+                    <div class="danger">Скорее всего он уже сломан!</div>
+                </section>
+                <section>
+                    <ul>
+                        <li>Встраиваем в работу</li>
+                        <li>Непрерывно тестируем в приложении</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section><h1>Сообщения об ошибках</h1></section>
+                <section>
+                    <div class="danger">Часто вообще не об ошибках!</div>
+                </section>
+                <section>
+                    <h2>Различаем:</h2>
+                    <ul>
+                        <li>некорректные запросы</li>
+                        <li>получение ошибок от другого сервиса</li>
+                        <li>ожидаемые некорректное состояние сервиса</li>
+                        <li>неожиданное состояние сервиса</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Фронтенд</h1>
+                    (это не UI, а торчащий наружу бекенд)
+                </section>
+                <section>
+                    <h2>Фронтенд может:</h2>
+                    <ul>
+                        <li>помогать собирать пострадавших от сбоев пользователей</li>
+                        <li>задавть глобальный таймаут</li>
+                        <li>управлять глобальным семплированием логов</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section><h1>Микросервисы</h1></section>
+                <section>
+                    <h2>Минусы</h2>
+                    <ul>
+                        <li>Дольше обрабатывается запрос</li>
+                        <li>Сетевой вызов ненадежен</li>
+                        <li>Надо реализовывать логику повторов</li>
+                        <li>Нужна идемпотентность</li>
+                        <li>Тратится много ресурсов на сериализацию/десериализацию</li>
+                        <li>Надо заботиться над версионированием и совместимостью версий</li>
+                        <li>Дополнительное логгирование</li>
+                        <li>Дополнительные метрики</li>
+                        <li>Нет удобных инструментов рефакторинга, как для локальных вызовов</li>
+                        <li>Сложнее отладка</li>
+                        <li>Сложнее эксплуатация (особенно устранение сбоев)</li>
+                        <li>Сложнее задокументировать и рассказать архитектуру</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Плюсы</h2>
+                    <ul>
+                        <li>Можно задействовать больше ресурсов на один вызов</li>
+                        <li>Позволяет сделать разное время жизни для разного функционала (неодновременные релизы)</li>
+                        <li>Изоляция критических ошибок</li>
+                        <li>Изоляция ресурсов</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="info">Плюсы должны перевешивать минусы</div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Репиты</h1>
+                </section>
+                <section>
+                    <h2>Не забыть:</h2>
+                    <ul>
+                        <li>Настроить таймауты</li>
+                        <li>Рандомизированый сдвиг</li>
+                        <li>Экспоненциальное затухание</li>
+                        <li>Выключатели</li>
+                        <li>Мониторинг</li>
+                        <li>Не повторять то, что уже затаймаутилось</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section><h1>Время запуска</h1></section>
+                <section>
+                    <h2 class="info">Время запуска — важный параметр!</h2>
+                    <ul>
+                        <li>Тестируем время запуска</li>
+                        <li>Откатываем релиз, если время запуска сильно увеличилось</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="info">Приложение должно быть способно стартовать без зависимостей!</div>
+                </section>
+            </section>
+            <section>
+                <section><h1>Откат на предыдущую версию</h1></section>
+                <section>
+                    <div class="info">Должен быть возможна всегда!</div>
+                    Миграцию данных можно сделать в приложении
+                </section>
+                <section>
+                    <div class="info">Время, за которое возможен откат версии, нужно контролировать</div>
+                    <div class="danger">Если нарушается — достаточная проблема, чтобы не релизиться</div>
+                </section>
+            </section>
+            <section>
+                <section><h1>Модификаторы запроса</h1></section>
+                <section>
+                    <ul>
+                        <li>Идентификатор запроса</li>
+                        <li>Идентификатор вызывающей системы</li>
+                        <li>Желаемый уровень логгирования для данного запроса</li>
+                        <li>Таймаут для данного запроса</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section><h1>Работа под нагрузкой</h1></section>
+                <section>
+                    <h2>QPS лимит</h2>
+                    <div class="info">Что будет происходить при привышении?</div>
+                </section>
+                <section>
+                    <h2>Тестирование работы под нагрузкой</h2>
+                    <ul>
+                        <li>Тестируем под нагрузкой многократно превышающей расчетную</li>
+                        <li>Тестируем восстановление под рассчетной нагрузкой</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section><h1>CAP/PACELC</h1></section>
+                <section>
+                    <div class="info">Для ускорения работы используйте по максимому отказ от консистентности</div>
+                </section>
+                <section>
+                    <div class="info">Клиент — часть распределенной системы</div>
+                </section>
+            </section>
+            <section>
+                <h1>Спасибо!</h1>
+                Вопросы?
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
