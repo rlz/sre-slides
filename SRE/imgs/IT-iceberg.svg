@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080">
+    <g>
+        <path vector-effect="non-scaling-stroke"
+            d="M818.434 354.138H164.666l119.99 180.624 58.22 250.914L402.8 736.97l91.59 345.912L544.8 891.04l39.192 59.072 92.726-300.046 70.148-41.038 71.568-254.89z"
+            fill="#004fc5" />
+        <path vector-effect="non-scaling-stroke"
+            d="M486.311-2.249L383.503 123.279l-126.522 56.8-92.3 186.73h643.118l-82.928-161.312-94.43-20.164L486.311-2.249z"
+            fill="#004fc5" />
+        <path vector-effect="non-scaling-stroke"
+            d="M486.046 33.228l-89.46 109.482-123.682 54.812-70.574 146.97h396.18l-45.014-112.606L397.154 284l98.974-92.584-10.082-158.188z"
+            fill="#fff" />
+        <path vector-effect="non-scaling-stroke"
+            d="M-264.685 345.692h1510.766v21.995H-264.685zm1535.334 0h116.283v21.995h-116.283zm-1638.586 0h64.657v21.995h-64.657zm1771.22 0h44.654v21.995h-44.654z"
+            fill="#004fc5" />
+    </g>
+    <g transform="translate(272.56 86.74)" filter="url(#prefix__a)">
+        <filter id="prefix__a" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-81.26" y="12.57">Web App</tspan>
+        </text>
+    </g>
+    <g transform="translate(566.86 96.74)" filter="url(#prefix__b)">
+        <filter id="prefix__b" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-97.84" y="12.57">Native App</tspan>
+        </text>
+    </g>
+    <g transform="translate(746.26 181.03)" filter="url(#prefix__c)">
+        <filter id="prefix__c" y="-53%" height="206%" x="-23%" width="146%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-177.64" y="12.57">Partner Integrations</tspan>
+        </text>
+    </g>
+    <g transform="translate(284.97 241.46)" filter="url(#prefix__d)">
+        <filter id="prefix__d" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-89.92" y="12.57">Public API</tspan>
+        </text>
+    </g>
+    <g transform="translate(658.51 280.65)" filter="url(#prefix__e)">
+        <filter id="prefix__e" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-125.68" y="12.57">Smart Devices</tspan>
+        </text>
+    </g>
+    <g transform="translate(275.07 356.99)" filter="url(#prefix__f)">
+        <filter id="prefix__f" y="-53%" height="206%" x="-23%" width="146%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-179.72" y="12.57">Phone/Chat Support</tspan>
+        </text>
+    </g>
+    <g transform="translate(723.21 428.02)" filter="url(#prefix__g)">
+        <filter id="prefix__g" y="-53%" height="206%" x="-23%" width="146%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-215.96" y="12.57">Hardware Infrastructure</tspan>
+        </text>
+    </g>
+    <g transform="translate(277.11 448.63)" filter="url(#prefix__h)">
+        <filter id="prefix__h" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-146.1" y="12.57">Capacity Planing</tspan>
+        </text>
+    </g>
+    <g transform="translate(796.59 503.74)" filter="url(#prefix__i)">
+        <filter id="prefix__i" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-186.32" y="12.57">Emergency Response</tspan>
+        </text>
+    </g>
+    <g transform="translate(315.68 556.2)" filter="url(#prefix__j)">
+        <filter id="prefix__j" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-75.7" y="12.57">Analitics</tspan>
+        </text>
+    </g>
+    <g transform="translate(540 608.66)" filter="url(#prefix__k)">
+        <filter id="prefix__k" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-187.86" y="12.57">Inner Documentation</tspan>
+        </text>
+    </g>
+    <g transform="translate(669.41 687.65)" filter="url(#prefix__l)">
+        <filter id="prefix__l" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-187.96" y="12.57">Government Relation</tspan>
+        </text>
+    </g>
+    <g transform="translate(311.09 734.8)" filter="url(#prefix__m)">
+        <filter id="prefix__m" y="-53%" height="206%" x="-23%" width="146%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-236.44" y="12.57">Security and access control</tspan>
+        </text>
+    </g>
+    <g transform="translate(735.05 805.83)" filter="url(#prefix__n)">
+        <filter id="prefix__n" y="-53%" height="206%" x="-23%" width="146%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-211.94" y="12.57">Hundreds microservices</tspan>
+        </text>
+    </g>
+    <g transform="translate(339.66 876.86)" filter="url(#prefix__o)">
+        <filter id="prefix__o" y="-53%" height="206%" x="-24%" width="148%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
+            <feOffset result="oBlur" />
+            <feFlood flood-color="#FFF" flood-opacity="1" />
+            <feComposite in2="oBlur" operator="in" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter><text font-family="Lato" font-size="40" font-weight="400" style="white-space:pre">
+            <tspan x="-152.28" y="12.57">Petabytes of data</tspan>
+        </text>
+    </g>
+</svg>

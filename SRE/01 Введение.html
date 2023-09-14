@@ -1,22 +1,88 @@
----
-layout: "slides"
----
-<div class="reveal small">
-    <div class="slides">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="../resources/reveal.js/reset.css" /> -->
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <!-- <link rel="stylesheet" href="../resources/reveal.js/theme/white.css" /> -->
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="../custom/css/theme.css" /> -->
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+              @apply text-4xl bg-amber-600 inline-block mt-8 mb-6 p-2 text-white;
+            }
+            h2 {
+              @apply text-3xl text-amber-600 my-2;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+            }
+            .p2 {
+                @apply flex;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll text-xl;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600 w-fit;
+                max-width: 800px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol ul, ul ul, ol ol, ul ol {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-4;
+            }
+          }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
         <section>
             <h1>Введение</h1>
         </section>
         <section>
             <section>
-                <h1>Что такое SRE?</h1>
+                <h1>Почему мы уделяем столько внимания эксплуатации сервисов?</h1>
+                <p>
+                    <img width="500" src="imgs/IT-iceberg.svg"/>
+                </p>
             </section>
             <section>
                 <h1>SRE — Site Reliability Engineering</h1>
                 <p><b>S</b>ite <b>R</b>eliability <b>E</b>ngineering</p>
                 <p>Набор практик и приемов обеспечения бесперебойности работы информационных систем</p>
-            </section>
-            <section>
-                <p>SRE в основном про облачные сервисы</p>
             </section>
         </section>
         <section>
@@ -26,11 +92,11 @@ layout: "slides"
             <section>
                 <h1>Сбой</h1>
                 <p>Существенное отклонение в работе сервиса от спецификации</p>
+                <img width="700" src="imgs/crash_graph_sample.png"/>
             </section>
             <section>
-                <h1>Сбой или Баг?</h1>
-                <p><b>Баг</b> — можем отложить починку на некоторый срок</p>
-                <p><b>Сбой</b> — работаем до устранения последствий 24х7</p>
+                <h1>Эвристика определения сбоя</h1>
+                <p>У вас сбой, если ваш колцентр не справляется с нагрузкой</p>
             </section>
             <section>
                 <h1>Надежность</h1>
@@ -71,7 +137,7 @@ layout: "slides"
             </section>
             <section>
                 <h1>Сферы ответственности SRE</h1><br />
-                <h2>Мониторинг</h2>
+                <h2>Снятие телеметрии</h2>
                 <ul>
                     <li>Помощь командам в дизайне и реализации мониторинга сервисов</li>
                     <li>Дизайн и реализация мониторинга <em>доступности</em></li>
@@ -216,3 +282,4 @@ layout: "slides"
         </section>
     </div>
 </div>
+</body>
