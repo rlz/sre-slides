@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../resources/reveal.js/reveal.css" />
+    <link rel="stylesheet" href="../resources/fontawesome-free-6.2.0-web/css/all.min.css" />
+    <script src="../resources/reveal.js/reveal.js"></script>
+    <script src="../resources/reveal.js/notes.js"></script>
+    <script src="../custom/init.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            h1 {
+                @apply text-4xl bg-amber-600 w-fit mx-auto mt-8 mb-6 p-2 text-white;
+            }
+            h1:first-child {
+                @apply mt-1;
+            }
+            h2 {
+                @apply text-3xl text-amber-600 my-2 mt-6 mb-4;
+            }
+            section {
+                @apply text-2xl;
+            }
+            .dev {
+                @apply border border-black border-dashed;
+            }
+            p {
+                @apply my-4;
+            }
+            img {
+                @apply mx-auto;
+                max-width: 930px;
+            }
+            .p2 {
+                @apply flex;
+            }
+            .p2 > div {
+                @apply flex-1;
+            }
+            pre {
+                @apply mx-auto w-fit overflow-scroll;
+                max-width: 930px;
+                max-height: 550px;
+            }
+            pre, code {
+                @apply text-left text-xl text-slate-500;
+            }
+            ul, ol {
+                @apply text-left mx-auto marker:text-amber-600 w-fit;
+                max-width: 800px;
+            }
+            ol {
+                @apply list-decimal;
+            }
+            ul {
+                @apply list-disc;
+            }
+            ol ul, ul ul, ol ol, ul ol {
+                @apply ml-12;
+            }
+            li {
+                @apply pl-4;
+            }
+            a {
+                color: blue;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+        @layer components {
+            .intro {
+                width: 960px;
+                height: 700px;
+            }
+            .info {
+                @apply block bg-blue-600 text-white p-3 rounded w-10/12 mx-auto my-8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Работа в режиме сложности, срочности и неопределенности</h1>
+                <p>
+                    <i class="fa-regular fa-copyright"></i>
+                    Дмитрий Масленников, «Тинькофф»
+                </p>
+            </section>
+            <!--
+                Структура решения
+                Agile
+                Приоритеты
+                Сложные распределенные системы в жизни
+            -->
+            <section>
+                <section>
+                    <h1>Структура современного ИТ решения</h1>
+                </section>
+                <section>
+                    <img width="700" src="imgs/services-top-level.png"/>
+                </section>
+                <section>
+                    <img width="600" src="imgs/services-hw.png"/>
+                    <p>
+                        Соберите свой процессор в <a href="https://nandgame.com/">Nandgame</a>
+                    </p>
+                </section>
+                <section>
+                    <img width="600" src="imgs/services-infra.png"/>
+                </section>
+                <section>
+                    <img width="600" src="imgs/services-aux.png"/>
+                </section>
+                <section>
+                    <img width="600" src="imgs/services-user.png"/>
+                </section>
+                <section>
+                    <img width="600" src="imgs/services-user.png"/>
+                </section>
+                <section>
+                    <img width="600" src="imgs/services-clients.png"/>
+                </section>
+            </section>
+            <section>
+                <section><h1>Manifesto for Agile Software Development</h1></section>
+                <section>
+                    <h1>Ценности</h1>
+                </section>
+                <section>
+                    <p>Люди и их взаимодействие важнее процессов и инструментов</p>
+                </section>
+                <section>
+                    <p>Работающий сервис важнее документации</p>
+                </section>
+                <section>
+                    <p>Взаимодействие важнее утряски условий</p>
+                </section>
+                <section>
+                    <p>Реакция на изменения важнее следования плану</p>
+                </section>
+                <section>
+                    <h1>Принципы</h1>
+                </section>
+                <section>
+                    <p>Приветствуем изменения даже на поздних стадиях разработки!</p>
+                </section>
+                <section>
+                    <p>Главная метрика — работающий софт</p>
+                </section>
+                <section>
+                    <p>Постоянное внимание к достижению технического совершенства и хорошему дизайну увеличивает гибкость</p>
+                    <p>Следствие: хороший дизайн тот, который легко поменять</p>
+                </section>
+                <section>
+                    <p>Стремитесь к простоте — искусству не делать как можно больше</p>
+                </section>
+                <section>
+                    <p>Регулярная рефлексия, как стать более эффективным и изменение поведения в этм направлении</p>
+                </section>
+            </section>
+            <section>
+                <h1>Пирамида приоритетов</h1>
+                <ol>
+                    <li>базовое зарабатывание</li>
+                    <li>безопасность</li>
+                    <li>защита от критических сбоев</li>
+                    <li>обеспечение излишков ресурсов/расширенное зарабатываение</li>
+                    <li>защита от мини-сбоев (баги, единичные случаи от клиентов)</li>
+                    <li>развлечения</li>
+                    <li>выполнение миссии</li>
+                </ol>
+            </section>
+            <section>
+                <section>
+                    <h1>Сложные распределенные системы в жизни</h1>
+                    <p>Метод человечков при проектировании сложных распределенных систем</p>
+                </section>
+                <section>
+                    <h1>Работа почты и сервиса доставки</h1>
+                    <ul>
+                        <li>Что делать, если ящик переполнен?</li>
+                        <li>Что делать, если пользователь не забрал посылку?</li>
+                        <li>Как принять негабаритный груз?</li>
+                        <li>Что делать, если пропал курьер?</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Государственные службы</h1>
+                    <ul>
+                        <li>Что делать, если переполнился архив?</li>
+                        <li>Что делать, если архив сгорел?</li>
+                        <li>Что делать, если в разных ведомствах данные противоречат друг другу?</li>
+                        <li>Как обнаружить пропажу данных или имущества?</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Обычные взаимодействия людей</h1>
+                    <ul>
+                        <li>Как убедиться, что твое сообщение прочитано?</li>
+                        <li>Как собрать вечеринку?</li>
+                        <li>Что делать, если к вечеринке не доставили еду?</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h1>Спасибо!</h1>
+                <h2>Вопросы?</h2>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
